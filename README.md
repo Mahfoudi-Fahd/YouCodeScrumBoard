@@ -47,6 +47,7 @@ Voir les maquettes en format PNG dans 📁 `/design`.
 
 ![modal](./design/modal.png)
 ---
-
+Scrum board design link
+https://www.figma.com/file/CtAsdqstzZBQ4Vko5d8OPM/Untitled?node-id=0%3A1
 
 Best of luck! 🚀
