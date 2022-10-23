@@ -53,7 +53,7 @@
 						</div>
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
-							<button class="d-flex list-group-item w-100 text-start">
+							<!-- <button class="d-flex list-group-item w-100 text-start">
 								<div class="">
 									<i class="fa-regular fa-circle-question text-success m-1"></i>
 								</div>
@@ -144,7 +144,7 @@
 										<span class="btn btn-secondary py-1 btn-sm">Feature</span>
 									</div>
 								</div>
-							</button>
+							</button> -->
 						</div>
 					</div>
 				</div>
@@ -156,7 +156,7 @@
 						</div>
 						<div class="" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
-							<button class="d-flex list-group-item w-100 text-start">
+							<!-- <button class="d-flex list-group-item w-100 text-start">
 								<div class="">
 									<i class="spinner-border spinner-border-sm text-success m-1"></i>
 								</div>
@@ -226,7 +226,7 @@
 										<span class="btn btn-secondary py-1 btn-sm btn-sm">Bug</span>
 									</div>
 								</div>
-							</button>
+							</button> -->
 						</div>
 					</div>
 				</div>
@@ -238,7 +238,7 @@
 						</div>
 						<div class="" id="done-tasks">
 							<!-- DONE TASKS HERE -->
-							<button class="d-flex list-group-item w-100 text-start">
+							<!-- <button class="d-flex list-group-item w-100 text-start">
 								<div class="">
 									<i class="fa-regular fa-circle-check text-success m-1"></i>
 								</div>
@@ -309,7 +309,7 @@
 										<span class="btn btn-secondary py-1 btn-sm btn-sm ">Bug</span>
 									</div>
 								</div>
-							</button>
+							</button> -->
 						</div>
 					</div>
 				</div>
@@ -332,60 +332,57 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+					<h1 class="modal-title fs-5" id="staticBackdropLabel">Add task</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Titel</label>
-						<input type="email" class="form-control" id="exampleFormControlInput1">
+						<label for="exampleFormControlInput1" class="form-label">Title</label>
+						<input type="email" class="form-control" id="title">
 					</div>
 
 					<label for="exampleFormControlInput1" class="form-label ">Type</label>
 					<div class="form-check my-1 ms-3">
-						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-						<label class="form-check-label" for="flexRadioDefault1">
-							Feature
-						</label>
+						<input value="Feature" class="form-check-input" type="radio" name="flexRadioDefault" id="type">
+						<label class="form-check-label" for="flexRadioDefault1">Feature</label>
 					</div>
 					<div class="form-check my-1 ms-3">
-						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+						<input value="Bug" class="form-check-input" type="radio" name="flexRadioDefault" id="type"
 							checked>
-						<label class="form-check-label" for="flexRadioDefault2">
-							Bug
-						</label>
+						<label class="form-check-label" for="flexRadioDefault2">Bug</label>
 					</div>
 
-					<label for="exampleFormControlInput1" class="form-label my-1">Priority</label>
-					<select class="form-select" aria-label="Default select example">
+					<label for="exampleFormControlInput1" class="form-label my-1 ">Priority</label>
+					<select class="form-select" aria-label="Default select example" id="Priority">
 						<option selected>Please select</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+						<option value="Low">Low</option>
+						<option value="Medium">Medium</option>
+						<option value="High">High</option>
+						<option value="Critical">Critical</option>
 					</select>
 
 					<label for="exampleFormControlInput1" class="form-label my-1">Status</label>
-					<select class="form-select" aria-label="Default select example">
+					<select class="form-select" aria-label="Default select example " id="status">
 						<option selected>Please select</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+						<option value="To Do">To Do</option>
+						<option value="In Progress">In Progress</option>
+						<option value="Done">Done</option>
 					</select>
 
 					<div class="md-form md-outline input-with-post-icon datepicker mb-4">
 						<label for="inputState" class="form-label my-1">Date</label>
-						<input placeholder="Select date" type="date" id="example" class="form-control">
+						<input placeholder="Select date" type="date" id="date" class="form-control">
 					</div>
 
 
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">Description</label>
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						<textarea class="form-control" id="description" rows="3"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary">Save</button>
+					<button type="button" class="btn btn-primary" onclick="createTask()">Save</button>
 				</div>
 			</div>
 		</div>
