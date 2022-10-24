@@ -38,7 +38,7 @@
 				</div>
 
 				<div class="">
-					<button class="btn btn-success rounded-pill" data-bs-toggle="modal"
+					<button class="btn btn-success rounded-pill" data-bs-toggle="modal" onclick="displayButtons()"
 						data-bs-target="#staticBackdrop"><i class="fa fa-plus pe-1"></i> Add Task</a>
 				</div>
 			</div>
@@ -382,7 +382,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" onclick="createTask()">Save</button>
+					<button type="button" class="btn btn-primary" id="buttonSaveID" onclick="createTask()">Save</button>
+					<button type="button" class="btn btn-danger" id="buttonUpdateID" onclick="updateTask()">Update</button>
 				</div>
 			</div>
 		</div>

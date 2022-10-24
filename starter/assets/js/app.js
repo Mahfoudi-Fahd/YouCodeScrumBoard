@@ -10,10 +10,15 @@ let Done = document.getElementById("done-tasks");
 reloadTasks();
 
 
+function displayButtons() {
+    document.getElementById('buttonSaveID').style.display = "block";
+    document.getElementById('buttonUpdateID').style.display = "none";
+}
 
 
 
 function createTask() {
+
     let FeatureOrBug;
 
     if (typeFeature.checked) FeatureOrBug = "Feature";
@@ -50,11 +55,13 @@ function saveTask() {
     // refresh tasks
 
 }
-
+let taskClickedIndis;
 function editTask(i) {
-    console.log(i)
-    // Initialisez task form
+    document.getElementById('buttonSaveID').style.display = "none";
+    document.getElementById('buttonUpdateID').style.display = "block";
+    taskClickedIndis = i;
 
+    // Initialisez task form
 
     // Affichez updates
     if (tasks[i].type == "Feature") typeFeature.checked = true;
@@ -78,6 +85,11 @@ function editTask(i) {
 
 function updateTask() {
     // GET TASK ATTRIBUTES FROM INPUTS
+    let FeatureOrBug;
+
+    if (typeFeature.checked) FeatureOrBug = "Feature";
+    else FeatureOrBug = "Bug";
+
     let newTask =
     {
         'title': document.querySelector('#title').value,
@@ -87,15 +99,17 @@ function updateTask() {
         'date': document.querySelector('#date').value,
         'description': document.querySelector('#description').value,
     };
-    
+
 
     // Créez task object
 
     // Remplacer ancienne task par nouvelle task
-    tasks[i]=newTask;
-    // Fermer Modal form
+    tasks[taskClickedIndis] = newTask;
 
+    // Fermer Modal form
+    $("#staticBackdrop").modal('hide');
     // Refresh tasks
+    reloadTasks();
 
 }
 
