@@ -55,13 +55,13 @@ function saveTask() {
     // refresh tasks
 
 }
-let taskClickedIndis;
+let taskClickedIndix;
 function editTask(i) {
     document.getElementById('buttonSaveID').style.display = "none";
     document.getElementById('buttonUpdateID').style.display = "block";
-    taskClickedIndis = i;
+    taskClickedIndix = i;
 
-    // Initialisez task form
+
 
     // Affichez updates
     if (tasks[i].type == "Feature") typeFeature.checked = true;
@@ -73,18 +73,13 @@ function editTask(i) {
     date.value = tasks[i].date;
     description.value = tasks[i].description;
 
-    $('#staticBackdrop').modal('show');
-    // Delete Button
-
-    // Définir l’index en entrée cachée pour l’utiliser en Update et Delete
-
-    // Definir FORM INPUTS
 
     // Ouvrir Modal form
+    $('#staticBackdrop').modal('show');
 }
 
 function updateTask() {
-    // GET TASK ATTRIBUTES FROM INPUTS
+    // Créez task object
     let FeatureOrBug;
 
     if (typeFeature.checked) FeatureOrBug = "Feature";
@@ -101,10 +96,10 @@ function updateTask() {
     };
 
 
-    // Créez task object
+
 
     // Remplacer ancienne task par nouvelle task
-    tasks[taskClickedIndis] = newTask;
+    tasks[taskClickedIndix] = newTask;
 
     // Fermer Modal form
     $("#staticBackdrop").modal('hide');
