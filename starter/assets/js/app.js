@@ -14,10 +14,15 @@ reloadTasks();
 
 
 function createTask() {
+    let FeatureOrBug;
+
+    if (typeFeature.checked) FeatureOrBug = "Feature";
+    else FeatureOrBug = "Bug";
+
     let newTask =
     {
         'title': document.querySelector('#title').value,
-        'type': document.querySelector('#type:checked').value,
+        'type': FeatureOrBug,
         'priority': document.querySelector('#Priority').value,
         'status': document.querySelector('#status').value,
         'date': document.querySelector('#date').value,
@@ -47,13 +52,21 @@ function saveTask() {
 }
 
 function editTask(i) {
-
+    console.log(i)
     // Initialisez task form
-    title.value = tasks[i].title;
-    priority.value = tasks[i].priority
-    $('#staticBackdrop').modal('show');
-    // Affichez updates
 
+
+    // Affichez updates
+    if (tasks[i].type == "Feature") typeFeature.checked = true;
+    else typeBug.checked = true;
+
+    title.value = tasks[i].title;
+    document.getElementById('Priority').value = tasks[i].priority;
+    document.getElementById('status').value = tasks[i].status;
+    date.value = tasks[i].date;
+    description.value = tasks[i].description;
+
+    $('#staticBackdrop').modal('show');
     // Delete Button
 
     // Définir l’index en entrée cachée pour l’utiliser en Update et Delete
@@ -65,11 +78,21 @@ function editTask(i) {
 
 function updateTask() {
     // GET TASK ATTRIBUTES FROM INPUTS
+    let newTask =
+    {
+        'title': document.querySelector('#title').value,
+        'type': FeatureOrBug,
+        'priority': document.querySelector('#Priority').value,
+        'status': document.querySelector('#status').value,
+        'date': document.querySelector('#date').value,
+        'description': document.querySelector('#description').value,
+    };
+    
 
     // Créez task object
 
     // Remplacer ancienne task par nouvelle task
-
+    tasks[i]=newTask;
     // Fermer Modal form
 
     // Refresh tasks
