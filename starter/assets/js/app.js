@@ -28,13 +28,12 @@ function createTask() {
     reloadTasks();
     $("#staticBackdrop").modal('hide');
 
+    // initialiser task form
+    initTaskForm()
+    // Afficher le boutton save
+
+    // Ouvrir modal form
 }
-// initialiser task form
-
-// Afficher le boutton save
-
-// Ouvrir modal form
-
 
 function saveTask() {
     // Recuperer task attributes a partir les champs input
@@ -47,9 +46,12 @@ function saveTask() {
 
 }
 
-function editTask(index) {
-    // Initialisez task form
+function editTask(i) {
 
+    // Initialisez task form
+    title.value = tasks[i].title;
+    priority.value = tasks[i].priority
+    $('#staticBackdrop').modal('show');
     // Affichez updates
 
     // Delete Button
@@ -74,34 +76,25 @@ function updateTask() {
 
 }
 
-function deleteTask() {
+function deleteTask(i) {
     // Get index of task in the array
-
+    tasks.splice(i, 1);
     // Remove task from array by index splice function
 
     // close modal form
 
     // refresh tasks
+    reloadTasks();
 }
 
 function initTaskForm() {
     // Clear task form from data
 
+    staticBackdrop.reset();
+
     // Hide all action buttons
 }
-// function addTask() {
-//     let newTask =
-//     {
-//         'title': document.querySelector('#title').value,
-//         'type': 'Feature',
-//         'priority': 'High',
-//         'status': 'To Do',
-//         'date': '2022-10-08',
-//         'description': `It is always safer to assume less rather than more domain knowledge in the dev team. Therefore following the KISS principle and augmenting each description or acceptance criteria list with contextual/domain knowledge and details that might become relevant is highly recommended.`,
-//     };
-//     tasks.push(newTask);
-//     reloadTasks();
-// }
+
 function reloadTasks() {
     // Remove tasks elements
     document.getElementById("to-do-tasks").innerHTML = "";
@@ -121,14 +114,19 @@ function reloadTasks() {
                                             <div class="fw-light">${tasks[i].date}</div>
                                             <div class="fs-6 text-truncate"style="max-width: 15rem;">${tasks[i].description}</div>
                                         </div>
-                                        <div class="text-start">
+                                        <div class="text-start ">
                                             <span class="btn btn-primary py-1 btn-sm ">${tasks[i].priority}</span>
                                             <span class="btn btn-secondary py-1 btn-sm btn-sm btn-sm ">${tasks[i].type}</span>
-                                        </div>
+                                            </div>
+                                            <div class="d-flex">   
+                                                <span class="btn " onclick="deleteTask(${i})"><i class="fa fa-trash"></i></span>
+                                                <span class="btn " onclick=editTask(${i})><i class="fa-solid fa-pen-to-square"></i>                                                
+                                            </div>
                                     </div>
+                                    
                                 </button>  `
         }
-        else if (tasks[i].status === "In Progress") {
+        if (tasks[i].status === "In Progress") {
             InProgress.innerHTML += ` <button class="d-flex list-group-item w-100 text-start">
                                         <div class="">
                                             <i class="spinner-border spinner-border-sm text-success m-1"></i>
@@ -142,27 +140,39 @@ function reloadTasks() {
                                             <div class="text-start">
                                                 <span class="btn btn-primary py-1 btn-sm ">${tasks[i].priority}</span>
                                                 <span class="btn btn-secondary py-1 btn-sm ">${tasks[i].type}</span>
+
+                                                </div>
+                                                <div class="d-flex">   
+                                                <span class="btn " onclick="deleteTask(${i})"><i class="fa fa-trash"></i></span>
+                                                <span class="btn " onclick=editTask(${i})><i class="fa-solid fa-pen-to-square"></i>                                                
                                             </div>
+                                            
                                         </div>
+                                        
                                     </button> `
         }
-        else if (tasks[i].status === "Done") {
+        if (tasks[i].status === "Done") {
             Done.innerHTML += `<button class="d-flex list-group-item w-100 text-start">
-            <div class="">
-                <i class="fa-regular fa-circle-check text-success m-1"></i>
-            </div>
-            <div class="">
-                <div class="fw-bolder ">${tasks[i].title}</div>
-                <div class="">
-                    <div class="fw-light">${tasks[i].date}</div>
-                    <div class="text-truncate"style="max-width: 15rem;">${tasks[i].description}</div>
-                </div>
-                <div class="text-start">
-                    <span class="btn btn-primary py-1 btn-sm ">${tasks[i].priority}</span>
-                    <span class="btn btn-secondary py-1 btn-sm btn-sm">${tasks[i].type}</span>
-                </div>
-            </div>
-        </button>`
+                                    <div class="">
+                                        <i class="fa-regular fa-circle-check text-success m-1"></i>
+                                    </div>
+                                    <div class="">
+                                        <div class="fw-bolder ">${tasks[i].title}</div>
+                                        <div class="">
+                                            <div class="fw-light">${tasks[i].date}</div>
+                                            <div class="text-truncate"style="max-width: 15rem;">${tasks[i].description}</div>
+                                        </div>
+                                        <div class="text-start">
+                                            <span class="btn btn-primary py-1 btn-sm ">${tasks[i].priority}</span>
+                                            <span class="btn btn-secondary py-1 btn-sm btn-sm">${tasks[i].type}</span>
+                                            
+                                        </div>
+                                        <div class="d-flex">   
+                                                <span class="btn " onclick="deleteTask(${i})"><i class="fa fa-trash"></i></span>
+                                                <span class="btn " onclick=editTask(${i})><i class="fa-solid fa-pen-to-square"></i>                                                
+                                            </div>
+                                    </div>
+                                </button>`
         }
 
     }
