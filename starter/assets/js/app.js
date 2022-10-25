@@ -39,27 +39,20 @@ function createTask() {
     $("#staticBackdrop").modal('hide');
 
     // initialiser task form
-    initTaskForm()
-    // Afficher le boutton save
+    initTaskForm();
+    
 
-    // Ouvrir modal form
+  
 }
 
-function saveTask() {
-    // Recuperer task attributes a partir les champs input
 
-    // Créez task object
+let taskClickedIndex;
 
-    // Ajoutez object au Array
-
-    // refresh tasks
-
-}
-let taskClickedIndix;
 function editTask(i) {
+
     document.getElementById('buttonSaveID').style.display = "none";
     document.getElementById('buttonUpdateID').style.display = "block";
-    taskClickedIndix = i;
+    taskClickedIndex = i;
 
 
 
@@ -96,14 +89,15 @@ function updateTask() {
     };
 
 
-
-
     // Remplacer ancienne task par nouvelle task
-    tasks[taskClickedIndix] = newTask;
+    tasks[taskClickedIndex] = newTask;
 
     // Fermer Modal form
+
     $("#staticBackdrop").modal('hide');
+
     // Refresh tasks
+
     reloadTasks();
 
 }
@@ -111,9 +105,6 @@ function updateTask() {
 function deleteTask(i) {
     // Get index of task in the array
     tasks.splice(i, 1);
-    // Remove task from array by index splice function
-
-    // close modal form
 
     // refresh tasks
     reloadTasks();
@@ -132,9 +123,11 @@ function reloadTasks() {
     document.getElementById("to-do-tasks").innerHTML = "";
     document.getElementById("in-progress-tasks").innerHTML = "";
     document.getElementById("done-tasks").innerHTML = "";
-
+        let counterDate=0;
+        let counterToDo=0, counterInProgress=0, counterDone=0; //Counters for the header of each card
     // Set Task count
     for (var i = 0; i < tasks.length; i++) {
+        
         if (tasks[i].status === "To Do") {
             ToDo.innerHTML += `<button class="d-flex list-group-item w-100 text-start">
                                     <div class="">
@@ -143,7 +136,7 @@ function reloadTasks() {
                                     <div class="">
                                         <div class="fw-bolder">${tasks[i].title}</div>
                                         <div class="">
-                                            <div class="fw-light">${tasks[i].date}</div>
+                                            <div class="fw-light">#${counterDate+1} ${tasks[i].date}</div>
                                             <div class="fs-6 text-truncate"style="max-width: 15rem;">${tasks[i].description}</div>
                                         </div>
                                         <div class="text-start ">
@@ -157,6 +150,8 @@ function reloadTasks() {
                                     </div>
                                     
                                 </button>  `
+                                counterToDo++;
+                                console.log('counterToDo');
         }
         if (tasks[i].status === "In Progress") {
             InProgress.innerHTML += ` <button class="d-flex list-group-item w-100 text-start">
@@ -166,7 +161,7 @@ function reloadTasks() {
                                         <div class="">
                                             <div class="fw-bolder">${tasks[i].title}</div>
                                             <div class="">
-                                                <div class="fw-light">${tasks[i].date}</div>
+                                                <div class="fw-light">#${counterDate+1} ${tasks[i].date}</div>
                                                 <div class="text-truncate"style="max-width: 15rem;">${tasks[i].description}</div>
                                             </div>
                                             <div class="text-start">
@@ -182,6 +177,8 @@ function reloadTasks() {
                                         </div>
                                         
                                     </button> `
+                                    counterInProgress++;
+                                    console.log('counterInProgress');
         }
         if (tasks[i].status === "Done") {
             Done.innerHTML += `<button class="d-flex list-group-item w-100 text-start">
@@ -191,7 +188,7 @@ function reloadTasks() {
                                     <div class="">
                                         <div class="fw-bolder ">${tasks[i].title}</div>
                                         <div class="">
-                                            <div class="fw-light">${tasks[i].date}</div>
+                                            <div class="fw-light">#${counterDate+1} ${tasks[i].date}</div>
                                             <div class="text-truncate"style="max-width: 15rem;">${tasks[i].description}</div>
                                         </div>
                                         <div class="text-start">
@@ -205,8 +202,15 @@ function reloadTasks() {
                                             </div>
                                     </div>
                                 </button>`
+                                counterDone++;
+                                
+                                
         }
-
+        counterDate++;
     }
-
+document.getElementById('to-do-tasks-count').innerText= counterToDo;
+document.getElementById('in-progress-tasks-count').innerText=counterInProgress;
+document.getElementById('done-tasks-count').innerText=counterDone;
 }
+
+
